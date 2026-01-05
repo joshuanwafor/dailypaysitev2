@@ -1,0 +1,64 @@
+.header {
+  position: relative;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.backgroundPattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 20% 80%, rgba(255,255,255,0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255,255,255,0.15) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(255,255,255,0.05) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.badge {
+  font-weight: 500;
+  font-size: 0.875rem;
+  padding: 0.5rem 1rem;
+  background-color: rgba(11, 70, 80, 0.1);
+  color: #0b4650;
+  border: 1px solid rgba(11, 70, 80, 0.2);
+}
+
+.titleContainer {
+  position: relative;
+}
+
+.title {
+  font-size: 3rem;
+  line-height: 1.2;
+  font-weight: 600;
+  color: #0b4650;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-family: 'Outfit', sans-serif;
+  
+  @media (max-width: 768px) {
+    font-size: 2.25rem;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 1.875rem;
+  }
+}
+
+.titleUnderline {
+  width: 60px;
+  height: 3px;
+  background-color: #329aae;
+  margin: 0 auto;
+  border-radius: 2px;
+}
+
+.caption {
+  color: #6c757d;
+  font-weight: 300;
+  font-family: 'Outfit', sans-serif;
+}
+  

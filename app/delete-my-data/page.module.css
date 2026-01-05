@@ -1,0 +1,169 @@
+.header {
+  background: linear-gradient(to right, var(--mantine-color-gray-0), var(--mantine-color-gray-1));
+  border-bottom: 1px solid var(--mantine-color-gray-2);
+}
+
+.title {
+  font-size: rem(48px);
+  line-height: 1.2;
+  font-weight: 900;
+  color: var(--mantine-color-dark-8);
+  margin: var(--mantine-spacing-md) 0;
+}
+
+@media (max-width: $mantine-breakpoint-sm) {
+  .title {
+    font-size: rem(36px);
+  }
+}
+
+.categoryCard {
+  padding: var(--mantine-spacing-xl);
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.categoryCard:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--mantine-shadow-md);
+}
+
+.categoryIcon {
+  margin: 0 auto;
+  box-shadow: var(--mantine-shadow-md);
+}
+
+.categoryItem {
+  padding: var(--mantine-spacing-sm);
+  border-radius: var(--mantine-radius-md);
+  transition: background-color 0.2s ease;
+}
+
+.categoryItem:hover {
+  background-color: var(--mantine-color-gray-0);
+}
+
+.section {
+  margin-bottom: var(--mantine-spacing-xl) * 2;
+}
+
+.section:last-child {
+  margin-bottom: 0;
+}
+
+.sectionTitle {
+  font-size: rem(36px);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: var(--mantine-spacing-md);
+}
+
+@media (max-width: $mantine-breakpoint-sm) {
+  .sectionTitle {
+    font-size: rem(28px);
+  }
+}
+
+.contactCard {
+  background: linear-gradient(to right, var(--mantine-color-gray-0), var(--mantine-color-blue-0));
+  padding: calc(var(--mantine-spacing-xl) * 1.5);
+}
+
+@media (max-width: $mantine-breakpoint-sm) {
+  .contactCard {
+    padding: var(--mantine-spacing-xl);
+  }
+}
+
+.contactIcon {
+  background-color: var(--mantine-color-blue-6);
+  color: var(--mantine-color-white);
+  box-shadow: var(--mantine-shadow-md);
+}
+
+.formCard {
+  background: linear-gradient(
+    to right,
+    var(--mantine-color-gray-0),
+    var(--mantine-color-red-0)
+  );
+  padding: calc(var(--mantine-spacing-xl) * 1.5);
+  border: 1px solid var(--mantine-color-red-2);
+}
+
+@media (max-width: $mantine-breakpoint-sm) {
+  .formCard {
+    padding: var(--mantine-spacing-xl);
+  }
+}
+
+.infoCard {
+  background-color: var(--mantine-color-gray-0);
+  padding: calc(var(--mantine-spacing-xl) * 1.5);
+  height: 100%;
+  border: 1px solid var(--mantine-color-gray-2);
+}
+
+@media (max-width: $mantine-breakpoint-sm) {
+  .infoCard {
+    padding: var(--mantine-spacing-xl);
+  }
+}
+
+.helpCard {
+  background: linear-gradient(
+    to right,
+    var(--mantine-color-gray-0),
+    var(--mantine-color-blue-0)
+  );
+  padding: calc(var(--mantine-spacing-xl) * 1.5);
+  border: 1px solid var(--mantine-color-blue-2);
+}
+
+@media (max-width: $mantine-breakpoint-sm) {
+  .helpCard {
+    padding: var(--mantine-spacing-xl);
+  }
+}
+
+.legalCard {
+  background: linear-gradient(
+    to right,
+    var(--mantine-color-gray-0),
+    var(--mantine-color-orange-0)
+  );
+  padding: calc(var(--mantine-spacing-xl) * 1.5);
+  border: 1px solid var(--mantine-color-orange-2);
+}
+
+@media (max-width: $mantine-breakpoint-sm) {
+  .legalCard {
+    padding: var(--mantine-spacing-xl);
+  }
+}
+
+.deleteButton {
+  transition: all 0.2s ease;
+}
+
+.deleteButton:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--mantine-shadow-md);
+}
+
+.timelineItem {
+  transition: all 0.2s ease;
+}
+
+.timelineItem:hover {
+  transform: translateX(5px);
+}
+
+.alertCard {
+  border-left: 4px solid var(--mantine-color-red-6);
+  background: linear-gradient(
+    to right,
+    var(--mantine-color-red-0),
+    var(--mantine-color-red-1)
+  );
+} 

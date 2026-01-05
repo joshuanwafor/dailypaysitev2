@@ -1,0 +1,113 @@
+.header {
+  background-color: rgba(255, 255, 255, 0.98);
+  border-bottom: 1px solid var(--mantine-color-gray-2);
+  z-index: 100;
+  position: sticky;
+  top: 0;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.mainLink {
+  text-decoration: none;
+  color: var(--mantine-color-gray-7);
+  font-size: var(--mantine-font-size-sm);
+  padding: var(--mantine-spacing-xs) var(--mantine-spacing-sm);
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border-radius: var(--mantine-radius-sm);
+  position: relative;
+}
+
+.mainLink:hover {
+  color: #0b4650;
+  background-color: rgba(11, 70, 80, 0.05);
+}
+
+.mainLink::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: #0b4650;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.mainLink:hover::after {
+  width: 80%;
+}
+
+.logo {
+  text-decoration: none;
+  color: var(--mantine-color-black);
+  transition: transform 0.2s ease;
+  display: flex;
+  align-items: center;
+}
+
+.logo:hover {
+  transform: scale(1.02);
+}
+
+.loginBtn {
+  font-weight: 500;
+  color: var(--mantine-color-gray-7);
+  transition: all 0.2s ease;
+}
+
+.loginBtn:hover {
+  color: #0b4650;
+  background-color: rgba(11, 70, 80, 0.08);
+}
+
+.ctaBtn {
+  background-color: #0b4650;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(11, 70, 80, 0.2);
+}
+
+.ctaBtn:hover {
+  background-color: rgba(11, 70, 80, 0.9);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(11, 70, 80, 0.3);
+}
+
+.mobileHeader {
+  border-bottom: 1px solid var(--mantine-color-gray-2);
+  background-color: var(--mantine-color-gray-0);
+}
+
+.mobileLink {
+  transition: background-color 0.2s ease;
+}
+
+.mobileLink:hover {
+  background-color: var(--mantine-color-gray-0);
+}
+
+.mobileLoginBtn {
+  font-weight: 500;
+  color: var(--mantine-color-gray-7);
+  border: 1px solid var(--mantine-color-gray-3);
+  transition: all 0.2s ease;
+}
+
+.mobileLoginBtn:hover {
+  color: #0b4650;
+  background-color: rgba(11, 70, 80, 0.05);
+  border-color: rgba(11, 70, 80, 0.2);
+}
+
+.mobileCTABtn {
+  background-color: #0b4650;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.mobileCTABtn:hover {
+  background-color: rgba(11, 70, 80, 0.9);
+} 
