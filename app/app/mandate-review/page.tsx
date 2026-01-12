@@ -170,6 +170,8 @@ function HrApprovalContent() {
         industry: hrInfo.industry,
         employerRCNumber: hrInfo.employerRCNumber,
         employerWebsite: hrInfo.employerWebsite,
+        // @ts-ignore
+        approvedMonthlySalary: formData.monthlySalary,
       });
 
       if (response.data?.success) {
