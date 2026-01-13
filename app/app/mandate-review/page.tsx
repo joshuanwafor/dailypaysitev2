@@ -194,9 +194,6 @@ function HrApprovalContent() {
         approvedMonthlySalary: approvedSalaryNumber,
       }
 
-      console.log('Payload:', payload);
-
-      return;
       const response = await dailypayResource.approveMandateRequest(payload);
 
       if (response.data?.success) {
