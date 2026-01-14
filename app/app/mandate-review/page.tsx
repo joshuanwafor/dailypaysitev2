@@ -193,10 +193,6 @@ function HrApprovalContent() {
         //@ts-ignore
         approvedMonthlySalary: approvedSalaryNumber,
       }
-
-
-      
-
     
       const response = await dailypayResource.approveMandateRequest(payload);
 
@@ -213,6 +209,8 @@ function HrApprovalContent() {
       setIsLoading(false);
     }
   }
+
+  
 
   async function declineDailyPayAccess(reason: string) {
     if (!token || !id || !email) {
