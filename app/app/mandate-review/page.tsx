@@ -197,9 +197,7 @@ function HrApprovalContent() {
 
       
 
-      console.log('payload', payload);
-
-      return
+    
       const response = await dailypayResource.approveMandateRequest(payload);
 
       if (response.data?.success) {
