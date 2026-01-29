@@ -282,8 +282,6 @@ function HrApprovalContent() {
     employeeCurrentlyWorks: false,
     salaryToDailyPayAccount: false,
     notifyDailyPayFirst: false,
-    acceptRepresentation: false,
-    copyOnTermination: false,
   });
 
   const [additionalComment, setAdditionalComment] = useState('');
@@ -839,28 +837,10 @@ function HrApprovalContent() {
                 />
 
                 <Checkbox
-                  label="Confirm that DailyPay will be notified first if the employee wants to change the salary account subsequently"
+                  label="Confirm that if the employee requests a change of salary account, the employee will be required to present a Letter of Non-Indebtedness from DailyPay before the request can be processed."
                   checked={approvalData.notifyDailyPayFirst}
                   onChange={(event) =>
                     handleApprovalChange('notifyDailyPayFirst', event.currentTarget.checked)
-                  }
-                  size="md"
-                />
-
-                <Checkbox
-                  label="Accept that DailyPay becomes the representative of the employee"
-                  checked={approvalData.acceptRepresentation}
-                  onChange={(event) =>
-                    handleApprovalChange('acceptRepresentation', event.currentTarget.checked)
-                  }
-                  size="md"
-                />
-
-                <Checkbox
-                  label="Agree to copy DailyPay in emails when employee is being fired, fined, or anything affecting financial performance"
-                  checked={approvalData.copyOnTermination}
-                  onChange={(event) =>
-                    handleApprovalChange('copyOnTermination', event.currentTarget.checked)
                   }
                   size="md"
                 />
