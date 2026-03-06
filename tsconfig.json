@@ -3,6 +3,7 @@
     "types": [
       "node",
       "jest",
+      "react",
       "@testing-library/jest-dom"
     ],
     "target": "es5",
