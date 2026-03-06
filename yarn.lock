@@ -11767,6 +11767,7 @@ __metadata:
     "@types/react": "npm:19.0.7"
     axios: "npm:^1.11.0"
     babel-loader: "npm:^9.2.1"
+    clsx: "npm:^2.1.1"
     eslint: "npm:^9.18.0"
     eslint-config-mantine: "npm:^4.0.3"
     eslint-plugin-jsx-a11y: "npm:^6.10.2"
