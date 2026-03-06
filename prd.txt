@@ -1,0 +1,213 @@
+Purpose:
+
+The DailyPay App by Alerts is a Fintech solution that is designed to change the way the working class African population bank. It gives them better value for their salaries, provides payment convenience and gives them the opportunity to have a better quality of life.
+
+The solution makes it possible for them to access their earned wages on a daily basis with zero interest on the claimed funds, hence, DailyPay. This account operates as the salary account for each user and this is one of the conditions for qualifying to earn daily from DailyPay.
+
+The application offers features like Onboarding, Wallet, Virtual accounts, Transfer, Pop-up notifications on earned pay, bank account linking, HR approvals. 
+
+Problem Statement:
+
+People today face the challenge of not being able to meet their basic needs despite the fact that they work hard and put in long hours. The purchasing capacity of the average person in Africa is getting lower everyday and salaries are simply not enough or do not come in early enough. 
+
+The DailyPay addresses these challenges by offering employees their wages on a daily basis which gives them the opportunity to meet the basic needs on a day by day basis as opposed to having to wait till the end of the month to get paid. At the end of each workday, the customer receives notification that they have earned their daily wage and their wallets are funded with this daily wage that can be claimed. 
+Technical Structure:
+We are going to build a mobile app that can be accessed by anybody on both Android and iOS and it will be secure and safe for all. The application will be reliable, fast and accessible.
+
+The backend will be designed to scale with room for additional features as we grow and users help us to build it out. 
+Target Market:
+The target market for DailyPay by Alerts is the working class African population looking to access a better quality of life and get more value from their salaries. 
+
+FUNCTIONALITIES AND FLOW
+
+
+Account creation
+
+User is displayed the following fields; email, password and confirm password
+
+Once the user has provided the details for the required fields as listed above, the user will see a button that clicking create account means the user agreed to terms of use and policies. 
+Once user clicks create account or proceed button, the user is shown success message and asked to check email for code sent to email and code fields for the user to input the code sent to email
+The user inputs the code and the user is informed of successful verification. User is taken to the next screen where the user will set up details.
+
+
+Login
+
+User is displayed with email and password fields
+User provides email and password. 
+If user has active account, user is able to login to either setting up details for a first time user or the dashboard for returning user
+If the user does not have an active account, the user is informed that the user is not a valid user. User should be asked to create an account
+
+Forgot Password
+
+If user is unable to login because of incorrect password, user should have the option to forget password
+If user clicks forget password, the user will be asked to provide email the user signed up with
+Once user provides email and submits, the user is sent an email and shown fields to provide code
+When user checks email, the user is shown a code
+The user takes the code and enters on the app
+Once done, the user is displayed password and ‘confirm’ password fields.
+Once the user has provided these, the user is shown success and that password has been reset.
+
+KYC
+
+The only KYC that we require to open a bank account is the BVN of the customer. The step here is;
+
+Customer is shown BVN field
+Customer provides BVN
+Code is sent to customer to verify BVN
+User provides code 
+Verification is processed
+
+IF verification is successful, user is shown a success screen and a button to proceed to Dashboard
+
+ELSE IF verification is not successful, user is informed that it was not successful and asked to retry by providing the correct BVN
+
+NOTE: User is unable to proceed without providing BVN
+
+DASHBOARD
+
+Once KYC is done, user is able to access the dashboard and on the dashboard, the user will see the following;
+
+Account Balance
+DailyPay
+Card (Coming soon)
+Stores (Coming soon)
+Transactions
+
+
+
+
+
+
+ACCOUNT BALANCE
+
+This is the wallet where the virtual account is domiciled and transactions are being carried out from. It is where the salaries come into and claimed daily pay comes into the balance as well for them to spend from.
+
+In this, there will be a button called “Transfer”
+
+Transfer - When the user clicks this, they see fields to provide the following;
+
+Select bank
+Provide account number that will be verified
+Amount 
+Pay
+
+Once payment is successful, the user is redirected back to the account balance page. 
+
+
+DAILYPAY
+
+When a user has not enabled DailyPay, when the user visits this page, this user will see 0.00 balance in the DailyPay wallet with a button to enable DailyPay. 
+
+IF the user clicks enable, the user will go through the following process either as a civil servant or employee of a private company;
+
+Set up Details
+
+the user is asked  to select between these two options;
+Work for Private Company 
+Civil Servant (Government Worker)
+
+If USER  works for Private company, this is the flow below; 
+to verify;
+BVN, NIN and ID which could be International Passport or other recognised means of identification
+
+Once the user has completed the verification the user is asked to provide the following fields;
+
+Name of Employer
+Address of employer
+Role at work
+Salary amount
+Duration of working there
+HR email and phone number. NOTE: The HR email must be verified. Check the domain of the email and email to know if it is an actual email and connected to the website of the company. Also check when the email was created. Must have been in existence for over 3 months
+
+Once the has provided the details, the user will be asked to link bank account to verify income from employer over the last 3 months to ensure consistency of income and employer information
+
+Once the user has successfully provided the bank information, the user will be informed that the HR will be contacted to approve them and will be notified when their account has been confirmed to receive dailypay 
+
+Email to HR
+
+The HR of the user will be sent an email containing information on the following;
+
+The name of employee
+The amount the employee claims to earn monthly minus deductions (Take home)
+Confirm that salaries are usually paid by the 3rd of next month latest
+Confirm that employee currently works in the organisation
+Confirm that employee salaries would be paid into the dedicated dailypay virtual accounts going forward
+Confirm that dailypay will be notified first if the employee wants to change the salary account subsequently and our confirmation will be sought before employee is allowed to change the salary account 
+That they accept that we become the representative of the employee 
+That we are copied in the email in the event that the employee is being fired, fined or anything else that might affect the financial performance of the employee
+
+Once the HR receives the email and reads through, the HR is required to click “Approved” and when this is done, the HR is taken to a success page.
+
+User will receive email and in-app notification that user has been approved to start earning DailyPay
+
+USER starts earning DailyPay
+If USER is a civil servant, this is the flow below; 
+
+BVN, NIN and ID which could be International Passport or other recognised means of identification
+
+Once the user has completed the verification the user is asked to provide the following fields;
+
+Name of Employer
+Address of employer
+Role at work
+Salary amount
+Duration of working there
+Finance and Account Department personnel email and phone number. NOTE: The Account Department email must be verified. Check the domain of the email and email to know if it is an actual email and connected to the website of the Institution. Also check when the email was created. Must have been in existence for over 3 months
+
+Once the has provided the details, the user will be asked to link bank account to verify income from employer over the last 3 months to ensure consistency of income and employer information
+
+Once the user has successfully provided the bank information, the user will be informed that the Account Department will be contacted to approve them and will be notified when their account has been confirmed to receive dailypay 
+
+The user is to be encouraged by email to visit the department to ensure that the department approves the mandate to switch the salary account to DailyPay account.
+
+Email to Account Officer
+
+The Account Department of the user will be sent an email containing information on the following;
+
+The name of employee
+The amount the employee claims to earn monthly minus deductions (Take home)
+Confirm that salaries are usually paid by the 3rd of next month latest
+Confirm that employee currently works in the organisation
+Confirm that employee salaries would be paid into the dedicated dailypay accounts going forward
+Confirm that dailypay will be notified first if the employee wants to stop the institution from paying DailyPay  
+That they accept that we become the representative of the employee 
+That we are copied in the email in the event that the employee is requesting that the mandate be canceled
+
+Once the Account Department receives the email and reads through, the Account Department personnel is required to click “Approved” and when this is done, the Account Department personnel is taken to a success page.
+
+USER starts earning DailyPay
+
+User will receive email and in-app notification that user has been approved to start earning DailyPay
+
+About DailyPay Wallet
+
+This is where the earned DailyPay reflects and stacks up. When the user receives notifications that they have earned dailypay, the money reflects in this dailypay wallet balance. The only button that can be clicked is “Claim”
+
+The user can claim the money anytime, either daily or even at once or a fraction of the balance. 
+
+What happens when a user clicks Claim?
+
+The user will be asked to provide an amount. Once the user provides an amount and clicks the claim, if the user has that value in the dailypay wallet, the user gets a success message and the account balance wallet will be credited while dailypay will be debited. 
+
+NOTE: There will be a transactions table that will show the breakdown of payments, credit or debit in the dailypay wallet.
+
+DailyPay charges
+
+When a user claims dailypay, the user's wallet will be credited with the claimed amount less the dailypay charges which will be determined. 
+
+
+TRANSACTIONS
+
+This shows the history of transactions on the DailyPay by Alerts App. 
+
+
+RETURNING USER
+
+Once the HR or Account Officer has approved, the user will receive an email and a pop up notification informing the user that the user can now start earning dailypay from DailyPay.
+
+When the user logs in, the user is taken to a dashboard. 
+
+
+	
+
+

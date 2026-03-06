@@ -2,17 +2,16 @@
 
 import Link from 'next/link';
 import {
-  IconBrandFacebook,
   IconBrandFacebookFilled,
   IconBrandInstagramFilled,
   IconBrandLinkedinFilled,
   IconBrandXFilled,
-  IconShield,
   IconLock,
   IconMail,
   IconPhone,
+  IconShield,
 } from '@tabler/icons-react';
-import { Box, Container, Divider, Grid, Group, Stack, Text, Title } from '@mantine/core';
+import { Box, Container, Divider, Grid, Group, Stack, Text } from '@mantine/core';
 import classes from './Footer.module.css';
 
 const footerLinks = {
@@ -51,7 +50,7 @@ export function Footer() {
           <Link href="/" className={classes.brandLink}>
             <img src="/hlogolight.svg" alt="Alerts africa" width={160} />
           </Link>
-          
+
           <Stack gap="xs" align="flex-end">
             <Text size="sm" fw={500} c="gray.3">
               Follow us
@@ -63,7 +62,10 @@ export function Footer() {
               <Link href="https://instagram.com/dailypayalerts" className={classes.socialLink}>
                 <IconBrandInstagramFilled size={20} />
               </Link>
-              <Link href="https://linkedin.com/company/dailypayalerts" className={classes.socialLink}>
+              <Link
+                href="https://linkedin.com/company/dailypayalerts"
+                className={classes.socialLink}
+              >
                 <IconBrandLinkedinFilled size={20} />
               </Link>
               <Link href="https://facebook.com/dailypayalerts" className={classes.socialLink}>
@@ -176,9 +178,17 @@ export function Footer() {
         </Grid>
 
         {/* Disclaimer */}
-        <Box mb="xl" p="md" style={{ backgroundColor: 'rgba(255, 255, 255, 0.03)', borderRadius: '8px' }}>
+        <Box
+          mb="xl"
+          p="md"
+          style={{ backgroundColor: 'rgba(255, 255, 255, 0.03)', borderRadius: '8px' }}
+        >
           <Text size="xs" c="gray.4" lh={1.6}>
-            DailyPay is a financial technology company, not a bank. Banking services are provided by Wema Bank and Safe Haven Microfinance Bank, members of the Nigeria Deposit Insurance Corporation (NDIC). The NDIC provides deposit insurance to protect your money in the event of a bank failure. More details about deposit insurance here: https://ndic.gov.ng/deposit-insurance/
+            DailyPay is a financial technology company, not a bank. Banking services are provided by
+            Wema Bank and Safe Haven Microfinance Bank, members of the Nigeria Deposit Insurance
+            Corporation (NDIC). The NDIC provides deposit insurance to protect your money in the
+            event of a bank failure. More details about deposit insurance here:
+            https://ndic.gov.ng/deposit-insurance/
           </Text>
         </Box>
 

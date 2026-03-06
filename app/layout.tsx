@@ -1,19 +1,27 @@
 import '@mantine/core/styles.css';
-import "./style.css"
+import './style.css';
+
 import React from 'react';
+import { Onest } from 'next/font/google';
 import { ColorSchemeScript, mantineHtmlProps, MantineProvider } from '@mantine/core';
-import { theme } from '@/theme';
-import { Header } from '../components/Header/Header';
-import { Footer } from '../components/Footer/Footer';
+import UpdatedFooter from '@/components/UpdatedFooter/UpdatedFooter';
+import { theme } from '../theme';
+
+const onest = Onest({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-onest',
+});
 
 export const metadata = {
   title: 'DailyPay by Alerts - Get Paid Every Day You Work',
-  description: 'Empowering African workers to access their earned wages daily. Get paid every day you work, with zero interest on claimed funds.',
+  description:
+    'Empowering African workers to access their earned wages daily. Get paid every day you work, with zero interest on claimed funds.',
 };
 
 export default function RootLayout({ children }: { children: any }) {
   return (
-    <html lang="en" {...mantineHtmlProps}>
+    <html lang="en" {...mantineHtmlProps} className={`${onest.className} ${onest.variable}`}>
       <head>
         <ColorSchemeScript />
         <link rel="shortcut icon" href="/favicon.svg" />
@@ -26,11 +34,15 @@ export default function RootLayout({ children }: { children: any }) {
           rel="stylesheet"
         />
       </head>
-      <body style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+      <body
+        style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}
+        className="font-onest scroll-smooth"
+      >
         <MantineProvider theme={theme}>
-          <Header />
-          <main style={{ flex: 1, overflow:"hidden" }}>{children}</main>
-          <Footer />
+          <main className="bg-none" style={{ flex: 1, overflow: 'hidden' }}>
+            {children}
+          </main>
+          <UpdatedFooter />
         </MantineProvider>
       </body>
     </html>

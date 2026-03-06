@@ -14,7 +14,7 @@ import {
   IconMapPin,
   IconUser,
   IconWallet,
-
+  
   IconX,
 } from '@tabler/icons-react';
 import {
@@ -120,24 +120,15 @@ function HrApprovalContent() {
             return `₦${numericValue}`;
           };
 
-          // Helper function to convert currency string to number
-          const parseToNumber = (value: string): number | null => {
-            if (!value) return null;
-            // Remove all non-numeric characters except dots
-            const numericValue = value.replace(/[^0-9.]/g, '').replace(/,/g, '');
-            const num = parseFloat(numericValue);
-            return isNaN(num) ? null : num;
-          };
-
           return {
             ...prev,
             employeeName: parsed.employeeName || prev.employeeName,
             monthlySalary: parsed.monthlySalary
               ? formatCurrency(parsed.monthlySalary)
               : prev.monthlySalary,
-            approvedMonthlySalary: parsed.monthlySalary
-              ? parseToNumber(parsed.monthlySalary)
-              : prev.approvedMonthlySalary,
+              approvedMonthlySalary: parsed.monthlySalary
+              ? formatCurrency(parsed.monthlySalary)
+              : prev.monthlySalary,
             takeHomePay: parsed.takeHomePay ? formatCurrency(parsed.takeHomePay) : prev.takeHomePay,
             role: parsed.jobRole || parsed.jobTitle || prev.role,
             employer: parsed.employer || prev.employer,
@@ -162,18 +153,7 @@ function HrApprovalContent() {
     setError(null);
 
     try {
-      // Get approvedMonthlySalary as number, fallback to parsing monthlySalary if needed
-      let approvedSalaryNumber: number | null = formData.approvedMonthlySalary;
-
-      if (approvedSalaryNumber === null && formData.monthlySalary) {
-        // Parse monthlySalary as fallback
-        const numericValue = formData.monthlySalary.replace(/[^0-9.]/g, '').replace(/,/g, '');
-        approvedSalaryNumber = numericValue ? parseFloat(numericValue) : null;
-        if (isNaN(approvedSalaryNumber!)) {
-          approvedSalaryNumber = null;
-        }
-      }
-      const payload = {
+      const response = await dailypayResource.approveMandateRequest({
         encryptedEmail: email,
         id: id,
         token: token,
@@ -190,11 +170,7 @@ function HrApprovalContent() {
         industry: hrInfo.industry,
         employerRCNumber: hrInfo.employerRCNumber,
         employerWebsite: hrInfo.employerWebsite,
-        //@ts-ignore
-        approvedMonthlySalary: approvedSalaryNumber,
-      }
-    
-      const response = await dailypayResource.approveMandateRequest(payload);
+      });
 
       if (response.data?.success) {
         setIsApproved(true);
@@ -209,8 +185,6 @@ function HrApprovalContent() {
       setIsLoading(false);
     }
   }
-
-  
 
   async function declineDailyPayAccess(reason: string) {
     if (!token || !id || !email) {
@@ -252,7 +226,6 @@ function HrApprovalContent() {
   const [formData, setFormData] = useState({
     employeeName: '',
     monthlySalary: '',
-    approvedMonthlySalary: null as number | null,
     takeHomePay: '',
     role: '',
     employer: '',
@@ -282,6 +255,8 @@ function HrApprovalContent() {
     employeeCurrentlyWorks: false,
     salaryToDailyPayAccount: false,
     notifyDailyPayFirst: false,
+    acceptRepresentation: false,
+    copyOnTermination: false,
   });
 
   const [additionalComment, setAdditionalComment] = useState('');
@@ -319,12 +294,6 @@ function HrApprovalContent() {
 
     if (!allHrFieldsFilled) {
       alert('Please fill in all required HR information fields before proceeding.');
-      return;
-    }
-
-    // Check if approved monthly salary is provided
-    if (formData.approvedMonthlySalary === null || formData.approvedMonthlySalary <= 0) {
-      alert('Please provide a valid approved monthly salary before proceeding.');
       return;
     }
 
@@ -513,7 +482,7 @@ function HrApprovalContent() {
 
         <Grid gutter="xl">
           {/* Employee Information */}
-          <GridCol span={12}>
+          <GridCol span={{ base: 12, md: 5 }}>
             <Card shadow="sm" padding="xl" radius="md" withBorder>
               <Stack gap="lg">
                 <Group>
@@ -532,111 +501,97 @@ function HrApprovalContent() {
 
                 <Divider />
 
-                <Grid gutter="lg">
-                  <GridCol span={{ base: 12, md: 6 }}>
-                    <Group>
-                      <IconUser size={20} color="#329aae" />
-                      <div>
-                        <Text size="sm" fw={500}>
-                          Employee Name
-                        </Text>
-                        <Text size="lg">{formData.employeeName}</Text>
-                      </div>
-                    </Group>
-                  </GridCol>
+                <Stack gap="md">
+                  <Group>
+                    <IconUser size={20} color="#329aae" />
+                    <div>
+                      <Text size="sm" fw={500}>
+                        Employee Name
+                      </Text>
+                      <Text size="lg">{formData.employeeName}</Text>
+                    </div>
+                  </Group>
 
-                  <GridCol span={{ base: 12, md: 6 }}>
-                    <Group>
-                      <IconBriefcase size={20} color="#329aae" />
-                      <div>
-                        <Text size="sm" fw={500}>
-                          Role
-                        </Text>
-                        <Text size="lg">{formData.role}</Text>
-                      </div>
-                    </Group>
-                  </GridCol>
+                  <Group>
+                    <IconBriefcase size={20} color="#329aae" />
+                    <div>
+                      <Text size="sm" fw={500}>
+                        Role
+                      </Text>
+                      <Text size="lg">{formData.role}</Text>
+                    </div>
+                  </Group>
 
-                  <GridCol span={{ base: 12, md: 6 }}>
-                    <Group>
-                      <IconBuilding size={20} color="#329aae" />
-                      <div>
-                        <Text size="sm" fw={500}>
-                          Employer
-                        </Text>
-                        <Text size="lg">{formData.employer}</Text>
-                      </div>
-                    </Group>
-                  </GridCol>
+                  <Group>
+                    <IconBuilding size={20} color="#329aae" />
+                    <div>
+                      <Text size="sm" fw={500}>
+                        Employer
+                      </Text>
+                      <Text size="lg">{formData.employer}</Text>
+                    </div>
+                  </Group>
 
-                  <GridCol span={{ base: 12, md: 6 }}>
-                    <Group>
-                      <IconCalendarTime size={20} color="#329aae" />
-                      <div>
-                        <Text size="sm" fw={500}>
-                          Duration
-                        </Text>
-                        <Text size="lg">{formData.duration}</Text>
-                      </div>
-                    </Group>
-                  </GridCol>
+                  <Group>
+                    <IconMapPin size={20} color="#329aae" />
+                    <div>
+                      <Text size="sm" fw={500}>
+                        Employer Address
+                      </Text>
+                      <Text size="lg">{formData.employerAddress}</Text>
+                    </div>
+                  </Group>
 
-                  <GridCol span={{ base: 12, md: 6 }}>
-                    <Group>
-                      <IconCurrency size={20} color="#329aae" />
-                      <div>
-                        <Text size="sm" fw={500}>
-                          Monthly Salary
-                        </Text>
-                        <Text size="lg">{formData.monthlySalary}</Text>
-                      </div>
-                    </Group>
-                  </GridCol>
+                  <Group>
+                    <IconCalendarTime size={20} color="#329aae" />
+                    <div>
+                      <Text size="sm" fw={500}>
+                        Duration
+                      </Text>
+                      <Text size="lg">{formData.duration}</Text>
+                    </div>
+                  </Group>
 
-                  <GridCol span={{ base: 12, md: 6 }}>
-                    <Group>
-                      <IconWallet size={20} color="#329aae" />
-                      <div>
-                        <Text size="sm" fw={500}>
-                          Take Home Pay
-                        </Text>
-                        <Text size="lg" fw={600} c="green">
-                          {formData.takeHomePay}
-                        </Text>
-                      </div>
-                    </Group>
-                  </GridCol>
+                  <Group>
+                    <IconCurrency size={20} color="#329aae" />
+                    <div>
+                      <Text size="sm" fw={500}>
+                        Monthly Salary
+                      </Text>
+                      <Text size="lg">{formData.monthlySalary}</Text>
+                    </div>
+                  </Group>
 
-                  <GridCol span={12}>
-                    <Group>
-                      <IconMapPin size={20} color="#329aae" />
-                      <div>
-                        <Text size="sm" fw={500}>
-                          Employer Address
-                        </Text>
-                        <Text size="lg">{formData.employerAddress}</Text>
-                      </div>
-                    </Group>
-                  </GridCol>
-                </Grid>
+                  <Group>
+                    <IconWallet size={20} color="#329aae" />
+                    <div>
+                      <Text size="sm" fw={500}>
+                        Take Home Pay
+                      </Text>
+                      <Text size="lg" fw={600} c="green">
+                        {formData.takeHomePay}
+                      </Text>
+                    </div>
+                  </Group>
+                </Stack>
               </Stack>
             </Card>
           </GridCol>
 
-          {/* HR Information Form */}
-          <GridCol span={12} mt="xl">
+          {/* Approval Form */}
+          <GridCol span={{ base: 12, md: 7 }}>
             <Card shadow="sm" padding="xl" radius="md" withBorder>
               <Stack gap="lg">
                 <Group>
-                  <ThemeIcon size={50} radius="xl" color="blue">
-                    <IconUser size={25} />
+                  <ThemeIcon size={50} radius="xl" color="green">
+                    <IconCheck size={25} />
                   </ThemeIcon>
                   <div>
                     <Title order={3} size="h4">
-                      HR Information
+                      Required Approvals
                     </Title>
                     <Text size="sm" c="gray.6">
-                      Please provide additional company and HR details
+                      Please confirm the following
                     </Text>
                   </div>
                 </Group>
@@ -644,154 +599,144 @@ function HrApprovalContent() {
                 <Divider />
 
                 <Alert
-                  title="Required Information"
+                  title="Important Information"
                   color="blue"
                   variant="light"
                   icon={<IconInfoCircle size={16} />}
                 >
-                  To complete the approval process, please provide the following additional information about your organization and HR contact details.
+                  By approving this request, you confirm that the employee's salary will be paid
+                  into their DailyPay virtual account going forward.
                 </Alert>
 
-                <Grid gutter="lg">
-                  {/* Company Information */}
-                  <GridCol span={{ base: 12, md: 6 }}>
-                    <Stack gap="md">
-                      <Title order={4} size="h5">
-                        Company Information
-                      </Title>
+                <Stack gap="md">
+                  <Checkbox
+                    label="Confirm that salaries are usually paid by the 3rd of next month latest"
+                    checked={approvalData.salaryPaidBy3rd}
+                    onChange={(event) =>
+                      handleApprovalChange('salaryPaidBy3rd', event.currentTarget.checked)
+                    }
+                    size="md"
+                  />
 
-                      <TextInput
-                        label="Company Name"
-                        placeholder="Enter company name"
-                        value={hrInfo.employerName}
-                        onChange={(event) => setHrInfo(prev => ({ ...prev, employerName: event.currentTarget.value }))}
-                        required
-                      />
+                  <Checkbox
+                    label="Confirm that this employee currently works in the organisation"
+                    checked={approvalData.employeeCurrentlyWorks}
+                    onChange={(event) =>
+                      handleApprovalChange('employeeCurrentlyWorks', event.currentTarget.checked)
+                    }
+                    size="md"
+                  />
 
-                      <TextInput
-                        label="Company Address"
-                        placeholder="Enter company address"
-                        value={hrInfo.employerAddress}
-                        onChange={(event) => setHrInfo(prev => ({ ...prev, employerAddress: event.currentTarget.value }))}
-                        required
-                      />
+                  <Checkbox
+                    label="Confirm that employee salaries would be paid into the dedicated DailyPay virtual accounts going forward"
+                    checked={approvalData.salaryToDailyPayAccount}
+                    onChange={(event) =>
+                      handleApprovalChange('salaryToDailyPayAccount', event.currentTarget.checked)
+                    }
+                    size="md"
+                  />
 
-                      <TextInput
-                        label="Company Website"
-                        placeholder="https://example.com"
-                        value={hrInfo.employerWebsite}
-                        onChange={(event) => setHrInfo(prev => ({ ...prev, employerWebsite: event.currentTarget.value }))}
-                      />
+                  <Checkbox
+                    label="Confirm that DailyPay will be notified first if the employee wants to change the salary account subsequently"
+                    checked={approvalData.notifyDailyPayFirst}
+                    onChange={(event) =>
+                      handleApprovalChange('notifyDailyPayFirst', event.currentTarget.checked)
+                    }
+                    size="md"
+                  />
 
-                      <TextInput
-                        label="RC Number (if applicable)"
-                        placeholder="Enter RC number"
-                        value={hrInfo.employerRCNumber}
-                        onChange={(event) => setHrInfo(prev => ({ ...prev, employerRCNumber: event.currentTarget.value }))}
-                      />
+                  <Checkbox
+                    label="Accept that DailyPay becomes the representative of the employee"
+                    checked={approvalData.acceptRepresentation}
+                    onChange={(event) =>
+                      handleApprovalChange('acceptRepresentation', event.currentTarget.checked)
+                    }
+                    size="md"
+                  />
 
-                      <TextInput
-                        label="Industry"
-                        placeholder="e.g., Technology, Healthcare, Finance"
-                        value={hrInfo.industry}
-                        onChange={(event) => setHrInfo(prev => ({ ...prev, industry: event.currentTarget.value }))}
-                        required
-                      />
+                  <Checkbox
+                    label="Agree to copy DailyPay in emails when employee is being fired, fined, or anything affecting financial performance"
+                    checked={approvalData.copyOnTermination}
+                    onChange={(event) =>
+                      handleApprovalChange('copyOnTermination', event.currentTarget.checked)
+                    }
+                    size="md"
+                  />
+                </Stack>
 
-                      <TextInput
-                        label="Company Size"
-                        placeholder="e.g., 50-100 employees"
-                        value={hrInfo.companySize}
-                        onChange={(event) => setHrInfo(prev => ({ ...prev, companySize: event.currentTarget.value }))}
-                        required
-                      />
-                    </Stack>
-                  </GridCol>
+                <Divider />
 
-                  {/* HR Contact Information */}
-                  <GridCol span={{ base: 12, md: 6 }}>
-                    <Stack gap="md">
-                      <Title order={4} size="h5">
-                        HR Contact Information
-                      </Title>
+                <Stack gap="md">
+                  <Text size="sm" fw={500}>
+                    Additional Comments (Optional)
+                  </Text>
+                  <Textarea
+                    placeholder="Any additional comments or special instructions..."
+                    rows={3}
+                    value={additionalComment}
+                    onChange={(event) => setAdditionalComment(event.currentTarget.value)}
+                  />
+                </Stack>
 
-                      <TextInput
-                        label="HR First Name"
-                        placeholder="Enter first name"
-                        value={hrInfo.hrFirstName}
-                        onChange={(event) => setHrInfo(prev => ({ ...prev, hrFirstName: event.currentTarget.value }))}
-                        required
-                      />
+                <Group justify="space-between" pt="md">
+                  <Button variant="outline" color="gray" leftSection={<IconMail size={16} />}>
+                    Contact Support
+                  </Button>
 
-                      <TextInput
-                        label="HR Last Name"
-                        placeholder="Enter last name"
-                        value={hrInfo.hrLastName}
-                        onChange={(event) => setHrInfo(prev => ({ ...prev, hrLastName: event.currentTarget.value }))}
-                        required
-                      />
+                  <Group gap="md">
+                    <Button
+                      variant="outline"
+                      color="red"
+                      leftSection={<IconX size={16} />}
+                      onClick={handleDecline}
+                      disabled={isLoading || isDeclineLoading}
+                    >
+                      Decline Request
+                    </Button>
 
-                      <TextInput
-                        label="HR Job Title"
-                        placeholder="e.g., HR Manager, HR Director"
-                        value={hrInfo.hrJobTitle}
-                        onChange={(event) => setHrInfo(prev => ({ ...prev, hrJobTitle: event.currentTarget.value }))}
-                        required
-                      />
-
-                      <TextInput
-                        label="HR Email"
-                        type="email"
-                        placeholder="hr@company.com"
-                        value={hrInfo.hrEmail}
-                        onChange={(event) => setHrInfo(prev => ({ ...prev, hrEmail: event.currentTarget.value }))}
-                        required
-                      />
-
-                      <TextInput
-                        label="Contact Phone"
-                        placeholder="+234 123 456 7890"
-                        value={hrInfo.contactPhone}
-                        onChange={(event) => setHrInfo(prev => ({ ...prev, contactPhone: event.currentTarget.value }))}
-                        required
-                      />
-
-                      <TextInput
-                        label="Approved Monthly Salary"
-                        placeholder="₦0.00"
-                        value={formData.approvedMonthlySalary !== null ? `₦${formData.approvedMonthlySalary.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` : ''}
-                        onChange={(event) => {
-                          const value = event.currentTarget.value;
-                          // Remove all non-numeric characters except dots
-                          const numericValue = value.replace(/[^0-9.]/g, '').replace(/,/g, '');
-                          const num = numericValue ? parseFloat(numericValue) : null;
-                          setFormData(prev => ({ ...prev, approvedMonthlySalary: num && !isNaN(num) ? num : null }));
-                        }}
-                        required
-                        description="Enter the approved monthly salary for this employee"
-                      />
-                    </Stack>
-                  </GridCol>
-                </Grid>
+                    <Button
+                      size="lg"
+                      color="green"
+                      leftSection={<IconCheck size={20} />}
+                      onClick={handleApprove}
+                      disabled={
+                        !Object.values(approvalData).every((value) => value) ||
+                        !hrInfo.employerName.trim() ||
+                        !hrInfo.employerAddress.trim() ||
+                        !hrInfo.industry.trim() ||
+                        !hrInfo.companySize.trim() ||
+                        !hrInfo.hrFirstName.trim() ||
+                        !hrInfo.hrLastName.trim() ||
+                        !hrInfo.hrJobTitle.trim() ||
+                        !hrInfo.hrEmail.trim() ||
+                        !hrInfo.contactPhone.trim() ||
+                        isLoading ||
+                        isDeclineLoading
+                      }
+                    >
+                      {isLoading ? 'Approving...' : 'Approve DailyPay Access'}
+                    </Button>
+                  </Group>
+                </Group>
               </Stack>
             </Card>
           </GridCol>
         </Grid>
 
-        {/* Approval Form */}
+        {/* HR Information Form */}
         <Box mt={40}>
           <Card shadow="sm" padding="xl" radius="md" withBorder>
             <Stack gap="lg">
               <Group>
-                <ThemeIcon size={50} radius="xl" color="green">
-                  <IconCheck size={25} />
+                <ThemeIcon size={50} radius="xl" color="blue">
+                  <IconUser size={25} />
                 </ThemeIcon>
                 <div>
                   <Title order={3} size="h4">
-                    Required Approvals
+                    HR Information
                   </Title>
                   <Text size="sm" c="gray.6">
-                    Please confirm the following
+                    Please provide additional company and HR details
                   </Text>
                 </div>
               </Group>
@@ -799,109 +744,120 @@ function HrApprovalContent() {
               <Divider />
 
               <Alert
-                title="Important Information"
+                title="Required Information"
                 color="blue"
                 variant="light"
                 icon={<IconInfoCircle size={16} />}
               >
-                By approving this request, you confirm that the employee's salary will be paid
-                into their DailyPay virtual account going forward.
+                To complete the approval process, please provide the following additional information about your organization and HR contact details.
               </Alert>
 
-              <Stack gap="md">
-                <Checkbox
-                  label="Confirm that salaries are usually paid by the 3rd of next month latest"
-                  checked={approvalData.salaryPaidBy3rd}
-                  onChange={(event) =>
-                    handleApprovalChange('salaryPaidBy3rd', event.currentTarget.checked)
-                  }
-                  size="md"
-                />
+              <Grid gutter="lg">
+                {/* Company Information */}
+                <GridCol span={{ base: 12, md: 6 }}>
+                  <Stack gap="md">
+                    <Title order={4} size="h5">
+                      Company Information
+                    </Title>
+                    
+                    <TextInput
+                      label="Company Name"
+                      placeholder="Enter company name"
+                      value={hrInfo.employerName}
+                      onChange={(event) => setHrInfo(prev => ({ ...prev, employerName: event.currentTarget.value }))}
+                      required
+                    />
 
-                <Checkbox
-                  label="Confirm that this employee currently works in the organisation"
-                  checked={approvalData.employeeCurrentlyWorks}
-                  onChange={(event) =>
-                    handleApprovalChange('employeeCurrentlyWorks', event.currentTarget.checked)
-                  }
-                  size="md"
-                />
+                    <TextInput
+                      label="Company Address"
+                      placeholder="Enter company address"
+                      value={hrInfo.employerAddress}
+                      onChange={(event) => setHrInfo(prev => ({ ...prev, employerAddress: event.currentTarget.value }))}
+                      required
+                    />
 
-                <Checkbox
-                  label="Confirm that employee salaries would be paid into the dedicated DailyPay virtual accounts going forward"
-                  checked={approvalData.salaryToDailyPayAccount}
-                  onChange={(event) =>
-                    handleApprovalChange('salaryToDailyPayAccount', event.currentTarget.checked)
-                  }
-                  size="md"
-                />
+                    <TextInput
+                      label="Company Website"
+                      placeholder="https://example.com"
+                      value={hrInfo.employerWebsite}
+                      onChange={(event) => setHrInfo(prev => ({ ...prev, employerWebsite: event.currentTarget.value }))}
+                    />
 
-                <Checkbox
-                  label="Confirm that if the employee requests a change of salary account, the employee will be required to present a Letter of Non-Indebtedness from DailyPay before the request can be processed."
-                  checked={approvalData.notifyDailyPayFirst}
-                  onChange={(event) =>
-                    handleApprovalChange('notifyDailyPayFirst', event.currentTarget.checked)
-                  }
-                  size="md"
-                />
-              </Stack>
+                    <TextInput
+                      label="RC Number (if applicable)"
+                      placeholder="Enter RC number"
+                      value={hrInfo.employerRCNumber}
+                      onChange={(event) => setHrInfo(prev => ({ ...prev, employerRCNumber: event.currentTarget.value }))}
+                    />
 
-              <Divider />
+                    <TextInput
+                      label="Industry"
+                      placeholder="e.g., Technology, Healthcare, Finance"
+                      value={hrInfo.industry}
+                      onChange={(event) => setHrInfo(prev => ({ ...prev, industry: event.currentTarget.value }))}
+                      required
+                    />
 
-              <Stack gap="md">
-                <Text size="sm" fw={500}>
-                  Additional Comments (Optional)
-                </Text>
-                <Textarea
-                  placeholder="Any additional comments or special instructions..."
-                  rows={3}
-                  value={additionalComment}
-                  onChange={(event) => setAdditionalComment(event.currentTarget.value)}
-                />
-              </Stack>
+                    <TextInput
+                      label="Company Size"
+                      placeholder="e.g., 50-100 employees"
+                      value={hrInfo.companySize}
+                      onChange={(event) => setHrInfo(prev => ({ ...prev, companySize: event.currentTarget.value }))}
+                      required
+                    />
+                  </Stack>
+                </GridCol>
 
-              <Group justify="space-between" pt="md">
-                <Button variant="outline" color="gray" leftSection={<IconMail size={16} />}>
-                  Contact Support
-                </Button>
+                {/* HR Contact Information */}
+                <GridCol span={{ base: 12, md: 6 }}>
+                  <Stack gap="md">
+                    <Title order={4} size="h5">
+                      HR Contact Information
+                    </Title>
+                    
+                    <TextInput
+                      label="HR First Name"
+                      placeholder="Enter first name"
+                      value={hrInfo.hrFirstName}
+                      onChange={(event) => setHrInfo(prev => ({ ...prev, hrFirstName: event.currentTarget.value }))}
+                      required
+                    />
 
-                <Group gap="md">
-                  <Button
-                    variant="outline"
-                    color="red"
-                    leftSection={<IconX size={16} />}
-                    onClick={handleDecline}
-                    disabled={isLoading || isDeclineLoading}
-                  >
-                    Decline Request
-                  </Button>
+                    <TextInput
+                      label="HR Last Name"
+                      placeholder="Enter last name"
+                      value={hrInfo.hrLastName}
+                      onChange={(event) => setHrInfo(prev => ({ ...prev, hrLastName: event.currentTarget.value }))}
+                      required
+                    />
 
-                  <Button
-                    size="lg"
-                    color="green"
-                    leftSection={<IconCheck size={20} />}
-                    onClick={handleApprove}
-                    disabled={
-                      !Object.values(approvalData).every((value) => value) ||
-                      !hrInfo.employerName.trim() ||
-                      !hrInfo.employerAddress.trim() ||
-                      !hrInfo.industry.trim() ||
-                      !hrInfo.companySize.trim() ||
-                      !hrInfo.hrFirstName.trim() ||
-                      !hrInfo.hrLastName.trim() ||
-                      !hrInfo.hrJobTitle.trim() ||
-                      !hrInfo.hrEmail.trim() ||
-                      !hrInfo.contactPhone.trim() ||
-                      formData.approvedMonthlySalary === null ||
-                      formData.approvedMonthlySalary <= 0 ||
-                      isLoading ||
-                      isDeclineLoading
-                    }
-                  >
-                    {isLoading ? 'Approving...' : 'Approve DailyPay Access'}
-                  </Button>
-                </Group>
-              </Group>
+                    <TextInput
+                      label="HR Job Title"
+                      placeholder="e.g., HR Manager, HR Director"
+                      value={hrInfo.hrJobTitle}
+                      onChange={(event) => setHrInfo(prev => ({ ...prev, hrJobTitle: event.currentTarget.value }))}
+                      required
+                    />
+
+                    <TextInput
+                      label="HR Email"
+                      type="email"
+                      placeholder="hr@company.com"
+                      value={hrInfo.hrEmail}
+                      onChange={(event) => setHrInfo(prev => ({ ...prev, hrEmail: event.currentTarget.value }))}
+                      required
+                    />
+
+                    <TextInput
+                      label="Contact Phone"
+                      placeholder="+234 123 456 7890"
+                      value={hrInfo.contactPhone}
+                      onChange={(event) => setHrInfo(prev => ({ ...prev, contactPhone: event.currentTarget.value }))}
+                      required
+                    />
+                  </Stack>
+                </GridCol>
+              </Grid>
             </Stack>
           </Card>
         </Box>

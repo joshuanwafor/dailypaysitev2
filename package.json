@@ -1,6 +1,6 @@
 {
-  "name": "dailypaysite-v2",
-  "version": "0.1.0",
+  "name": "mantine-next-template",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -29,12 +29,16 @@
     "@next/bundle-analyzer": "^15.2.6",
     "@next/mdx": "^15.2.6",
     "@tabler/icons-react": "^3.30.0",
+    "@tailwindcss/postcss": "^4.2.1",
     "@types/mdx": "^2.0.13",
     "axios": "^1.11.0",
     "marked": "^15.0.7",
-    "next": "16.1.1",
-    "react": "19.2.3",
-    "react-dom": "19.2.3"
+    "motion": "^12.34.4",
+    "next": "^15.2.6",
+    "react": "^19.0.3",
+    "react-dom": "^19.0.3",
+    "tailwind-merge": "^3.5.0",
+    "tailwindcss": "^4.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.26.0",
@@ -48,13 +52,16 @@
     "@testing-library/user-event": "^14.6.0",
     "@types/eslint-plugin-jsx-a11y": "^6",
     "@types/jest": "^29.5.14",
+    "@types/node": "^22.10.7",
+    "@types/react": "19.0.7",
     "babel-loader": "^9.2.1",
+    "eslint": "^9.18.0",
     "eslint-config-mantine": "^4.0.3",
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-react": "^7.37.4",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
-    "postcss": "^8.5.1",
+    "postcss": "^8.5.6",
     "postcss-preset-mantine": "1.17.0",
     "postcss-simple-vars": "^7.0.1",
     "prettier": "^3.4.2",
@@ -63,15 +70,8 @@
     "stylelint": "^16.13.2",
     "stylelint-config-standard-scss": "^14.0.0",
     "ts-jest": "^29.2.5",
-    "typescript-eslint": "^8.20.0",
-
-    "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "16.1.1",
-    "tailwindcss": "^4",
-    "typescript": "^5"
-  }
+    "typescript": "5.7.3",
+    "typescript-eslint": "^8.20.0"
+  },
+  "packageManager": "yarn@4.6.0"
 }
