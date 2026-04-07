@@ -59,7 +59,7 @@ export default function Navbar({ className }: { className?: string }) {
           {/* Download Button */}
           <div className="hidden md:flex">
             <Link
-              href="/download-app"
+              href="https://www.alerts.africa/download-app"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-[#191919] text-white font-onest font-medium text-base px-6 py-3 rounded-full hover:bg-[#333] transition-colors whitespace-nowrap w-38.75 flex justify-center h-12.5"
@@ -114,7 +114,7 @@ export default function Navbar({ className }: { className?: string }) {
               Blog
             </Link>
             <Link
-              href="/download-app"
+              href="https://www.alerts.africa/download-app"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-[#191919] text-white font-onest font-medium text-base px-6 py-3 rounded-full text-center hover:bg-[#333] transition-colors "

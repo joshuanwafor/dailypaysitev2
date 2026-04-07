@@ -133,7 +133,7 @@ export default function UpdatedFooter() {
             </h4>
             <div className="flex flex-col gap-3 ">
               <Link
-                href="#"
+                href="/about"
                 className="text-white font-onest font-normal text-base hover:text-white/70 transition-colors"
               >
                 About us
@@ -147,7 +147,9 @@ export default function UpdatedFooter() {
                 Blog
               </Link>
               <Link
-                href="#"
+                href="/contact"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-white font-onest font-normal text-base hover:text-white/70 transition-colors"
               >
                 Help center
@@ -162,19 +164,19 @@ export default function UpdatedFooter() {
             </h4>
             <div className="flex flex-col gap-3">
               <Link
-                href="#"
+                href="/policy"
                 className="text-white font-onest font-normal text-base hover:text-white/70 transition-colors"
               >
                 Privacy policy
               </Link>
               <Link
-                href="#"
+                href="/terms"
                 className="text-white font-onest font-normal text-base hover:text-white/70 transition-colors"
               >
                 Terms of service
               </Link>
               <Link
-                href="#"
+                href="cookie-policy"
                 className="text-white font-onest font-normal text-base hover:text-white/70 transition-colors"
               >
                 Cookie policy
