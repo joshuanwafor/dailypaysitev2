@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { createTheme } from '@mantine/core';
+import { createTheme } from "@mantine/core";
 
 export const theme = createTheme({
-  primaryColor: 'blue',
+  primaryColor: "blue",
   primaryShade: 9,
   colors: {
     blue: [
@@ -16,12 +16,14 @@ export const theme = createTheme({
       "#4fc4db",
       "#41adc3",
       "#329aae",
-      "#0b4650"
+      "#0b4650",
     ],
   },
-  fontFamily: '"Outfit", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+  fontFamily:
+    '"Onest", "Outfit", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
   headings: {
-    fontFamily: '"Outfit", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-    fontWeight: '600',
+    fontFamily:
+      '"Onest", "Outfit", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+    fontWeight: "600",
   },
 });

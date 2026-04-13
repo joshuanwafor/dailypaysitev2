@@ -1,10 +1,10 @@
-import React from 'react';
-import Image from 'next/image';
-import AnimatedSection from '@/layouts/AnimatedSection';
-import MainLayout from '@/layouts/MainLayout';
-import { fadeIn } from '@/utils/animations';
-import CardSection from '../HomePage/CardSection';
-import TwoCardsSections from '../HomePage/TwoCardsSections';
+import React from "react";
+import Image from "next/image";
+import AnimatedSection from "@/layouts/AnimatedSection";
+import MainLayout from "@/layouts/MainLayout";
+import { fadeIn } from "@/utils/animations";
+import CardSection from "../HomePage/CardSection";
+import TwoCardsSections from "../HomePage/TwoCardsSections";
 
 const AboutUs = () => {
   return (
@@ -19,7 +19,8 @@ const AboutUs = () => {
             Empowering individuals with instant access to their earned income
           </p>
           <p className="font-lg text-[hsla(0,0%,12%,1)] lg:text-start text-center">
-            We're your partner in building better financial habits and achieving your goals.
+            We're your partner in building better financial habits and achieving
+            your goals.
           </p>
           <div className="mt-10 flex flex-wrap items-center lg:justify-start justify-center gap-4 lg:mb-8 mb-0">
             <a
@@ -58,7 +59,9 @@ const AboutUs = () => {
                 <span className="text-white font-normal text-xs opacity-90 leading-4">
                   Download on the
                 </span>
-                <span className="text-white font-bold text-lg leading-7">App Store</span>
+                <span className="text-white font-bold text-lg leading-7">
+                  App Store
+                </span>
               </div>
             </a>
           </div>
@@ -85,17 +88,18 @@ const AboutUs = () => {
             Learn About Dailypay
           </p>
           <p className="text-lg  text-start mt-6 font-normal text-[hsla(72, 11%, 9%, 1)]">
-            DailyPay is a modern African fintech platform built to fundamentally transform how
-            people experience, access, and manage their money. We believe that financial access,
-            control, and dignity should not be limited by outdated payday systems or rigid salary
-            cycles.
+            DailyPay is a modern African fintech platform built to fundamentally
+            transform how people experience, access, and manage their money. We
+            believe that financial access, control, and dignity should not be
+            limited by outdated payday systems or rigid salary cycles.
             <br />
             <br />
-            We empower working individuals to access their earned income daily, giving them
-            real-time control over their finances, helping them make smarter money decisions, and
-            enabling them to live with confidence, stability, and peace of mind. With DailyPay,
-            users no longer have to wait till month-end, rely on loans, or struggle through
-            emergencies — they gain freedom, flexibility, and control
+            We empower working individuals to access their earned income daily,
+            giving them real-time control over their finances, helping them make
+            smarter money decisions, and enabling them to live with confidence,
+            stability, and peace of mind. With DailyPay, users no longer have to
+            wait till month-end, rely on loans, or struggle through emergencies
+            — they gain freedom, flexibility, and control
           </p>
         </div>
         <div className="w-full flex lg:flex-row flex-col gap-6 mt-8 max-w-7xl">
@@ -130,16 +134,19 @@ const AboutUs = () => {
           </div>
         </div>
         <p className=" text-lg  text-start mt-8 font-normal text-[hsla(72, 11%, 9%, 1)]">
-          By combining cutting-edge technology, deep user empathy, and secure financial
-          infrastructure, DailyPay delivers a seamless, intuitive, and secure financial experience.
-          From daily salary access and smart wallets to bill payments, disciplined savings,
-          investments, and emergency financial support, DailyPay brings together everything users
-          need to manage money smarter — all in one beautifully designed platform.
+          By combining cutting-edge technology, deep user empathy, and secure
+          financial infrastructure, DailyPay delivers a seamless, intuitive, and
+          secure financial experience. From daily salary access and smart
+          wallets to bill payments, disciplined savings, investments, and
+          emergency financial support, DailyPay brings together everything users
+          need to manage money smarter — all in one beautifully designed
+          platform.
           <br />
           <br />
-          At its core, DailyPay is more than a financial app. It is a movement to restore financial
-          dignity, unlock opportunity, and build healthier money habits across Africa — one salary,
-          one decision, and one life at a time.
+          At its core, DailyPay is more than a financial app. It is a movement
+          to restore financial dignity, unlock opportunity, and build healthier
+          money habits across Africa — one salary, one decision, and one life at
+          a time.
         </p>
       </AnimatedSection>
       <TwoCardsSections
@@ -159,16 +166,18 @@ const AboutUs = () => {
             </p>
             <p className="max-w-2xl text-lg z-2 text-[hsla(0,0%,12%,1)]">
               <span>
-                To empower Africa’s workforce with instant access to earned income, smart financial
-                tools, and meaningful control over their money — enabling better financial
-                decisions, reducing financial stress, and improving quality of life.
+                To empower Africa’s workforce with instant access to earned
+                income, smart financial tools, and meaningful control over their
+                money — enabling better financial decisions, reducing financial
+                stress, and improving quality of life.
               </span>
               <br />
               <br />
               <span>
-                We are committed to building technology-driven solutions that promote financial
-                inclusion, discipline, and long-term prosperity, while delivering seamless, secure,
-                and human-centered financial experiences.
+                We are committed to building technology-driven solutions that
+                promote financial inclusion, discipline, and long-term
+                prosperity, while delivering seamless, secure, and
+                human-centered financial experiences.
               </span>
             </p>
           </>
@@ -179,7 +188,7 @@ const AboutUs = () => {
         className="gap-0 rounded-none "
         leftImageElement={
           <img
-            src="/images/hero-8.png"
+            src="/images/hero-88.png"
             alt="feature-1"
             className=" w-full h-full  object-contain object-right lg:block md:hidden sm:block lg:basis-1/2 basis-full lg:mb-0 mb-2 lg:rounded-none rounded-[30px] "
           />
@@ -191,21 +200,24 @@ const AboutUs = () => {
             </p>
             <p className="max-w-2xl text-lg z-2 text-[hsla(0,0%,12%,1)]">
               <span>
-                To become Africa’s leading financial empowerment platform — redefining how people
-                earn, manage, save, spend, and grow their money.
+                To become Africa’s leading financial empowerment platform —
+                redefining how people earn, manage, save, spend, and grow their
+                money.
               </span>
               <br />
               <br />
               <span>
-                We envision a future where every working individual has complete financial control,
-                instant access to their income, and the tools needed to build wealth, eliminate
-                financial anxiety, and live with dignity.
+                We envision a future where every working individual has complete
+                financial control, instant access to their income, and the tools
+                needed to build wealth, eliminate financial anxiety, and live
+                with dignity.
               </span>
               <br />
               <br />
               <span>
-                By shaping the future of salary, payments, and financial wellbeing, DailyPay aims to
-                create a more inclusive, resilient, and economically empowered Africa.
+                By shaping the future of salary, payments, and financial
+                wellbeing, DailyPay aims to create a more inclusive, resilient,
+                and economically empowered Africa.
               </span>
             </p>
           </>
@@ -224,7 +236,8 @@ const AboutUs = () => {
             </p>
 
             <p className="max-w-xl text-white text-lg">
-              join thousands of employees who are already enjoying financial freedom with DailyPay.
+              join thousands of employees who are already enjoying financial
+              freedom with DailyPay.
             </p>
             <div className="flex  flex-wrap gap-6">
               <a
@@ -280,7 +293,11 @@ const AboutUs = () => {
             />
 
             <div className="w-full h-full flex  lg:items-end items-start lg:justify-end justify-center lg:mt-0 mt-6 relative pr-12">
-              <img src="/images/phone-frame-3.png" alt="phone-frame" className="  bg-contain" />
+              <img
+                src="/images/phone-frame-3.png"
+                alt="phone-frame"
+                className="  bg-contain"
+              />
             </div>
           </>
         }
